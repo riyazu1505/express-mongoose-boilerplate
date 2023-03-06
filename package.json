@@ -1,0 +1,28 @@
+{
+  "name": "mongoose-7",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "serve": "set NODE_ENV=dev&& nodemon index.js"
+  },
+  "author": "Riyaz",
+  "license": "ISC",
+  "devDependencies": {
+    "dotenv": "^16.0.3",
+    "nodemon": "^2.0.21"
+  },
+  "dependencies": {
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-mongo-sanitize": "^2.2.0",
+    "helmet": "^6.0.1",
+    "moment": "^2.29.4",
+    "moment-timezone": "^0.5.41",
+    "mongoose": "^7.0.0",
+    "response-time": "^2.3.2",
+    "xss-clean": "^0.1.1"
+  }
+}
