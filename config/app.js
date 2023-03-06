@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const path = require('path')
 
 
 // config
@@ -16,11 +17,14 @@ app.use(require('xss-clean')()) // sanitize request data
 app.use(require('express-mongo-sanitize')()) // sanitize request data
 app.use(require('compression')()) // gzip compression
 app.use(require('response-time')())
+app.use('/api', require('../utils/reqlimit')) // 25 req per 5 sec
+app.use(require('../utils/loggers/morgan')) // req logger
 
 
 // routes
+app.use(express.static(path.join(__dirname, 'public')))
 app.use(require('../helpers/reqResConfig'))
-app.use('/api', require('../config/routes'))
+app.use('/api', require('../config/routes')) // api routes
 
 
 // error handling

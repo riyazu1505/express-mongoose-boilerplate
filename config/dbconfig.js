@@ -1,3 +1,4 @@
+const logger = require('../utils/loggers')
 const mongoose = require('mongoose')
 mongoose.Promise = global.Promise
 
@@ -10,10 +11,7 @@ var conn = mongoose.createConnection((process.env.DB_CONNECTION_URL), {
 exports.conn = conn
 
 
-conn.on('connected', () => {
-  console.log('database connected')
-})
-
+conn.on('connected', () => { logger.info('database connected') })
 
 conn.on('error', (error) => {
   console.log(`MongoDB :: connection ${this.name} ${JSON.stringify(error)}`);
