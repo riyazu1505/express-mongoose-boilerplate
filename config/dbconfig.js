@@ -14,8 +14,8 @@ exports.conn = conn
 conn.on('connected', () => { logger.info('database connected') })
 
 conn.on('error', (error) => {
-  console.log(`MongoDB :: connection ${this.name} ${JSON.stringify(error)}`);
-  conn.close().catch(() => console.log(`MongoDB :: failed to close connection ${this.name}`));
+  logger.error(error)
+  conn.close().catch(() => console.log(`MongoDB :: failed to close connection ${this.name}`))
 })
 
 

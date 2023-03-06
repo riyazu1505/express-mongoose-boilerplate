@@ -4,7 +4,7 @@ const path = require('path')
 
 
 // config
-app.set('PORT', process.env.APP_SERVER_PORT || 8087)
+app.set('PORT', process.env.APP_SERVER_PORT || 8088)
 
 
 // middlewares
