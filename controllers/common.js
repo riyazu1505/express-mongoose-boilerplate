@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const { dbmodel } = require('../config/dbconfig')
-const schema = require('../schemas/vehicle')
+const schema = require('../schemas/vehicles')
 
 
 router.get('/', async (req, res, next) => {

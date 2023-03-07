@@ -8,8 +8,9 @@ const serverTz = global.serverTz || Intl.DateTimeFormat().resolvedOptions().time
 
 // job('*/15 * * * * *', () => {
 //   const outputPath = path.join(__dirname, `/../../backups/${moment().format('YYYY-MM-DD')}/`)
+//   // const outputPath = '../../../'
 
-//   const command = `mongodump`
+//   const command = `mongodump --db=${process.env.DB_NAME} --gzip`
 //   exec(command, (err, stdout, stderr) => {
 //     if (err) { return console.log('err: \n', err) }
 //     if (stderr) { return console.log('stderr: \n', stderr) }

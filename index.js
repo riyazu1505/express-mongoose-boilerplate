@@ -10,8 +10,9 @@ process.env.UV_THREADPOOL_SIZE = (require('os')).cpus().length // By default, th
 global.serverTz = Intl.DateTimeFormat().resolvedOptions().timeZone
 
 
-// cron-jobs
-require('./utils/cron-jobs')
+// utils
+require('./utils/cron-jobs') // cron-jobs
+require('./utils/socketio')({ server }) // socket.io
 
 
 // unhandled exceptions handler

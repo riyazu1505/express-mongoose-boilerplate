@@ -16,7 +16,6 @@ const enumerateErrorFormat = winston.format((info) => {
 
 
 const printf = winston.format.printf((info) => {
-  // const timestamp = (process.env.NODE_ENV === 'dev') ? info.timestamp : moment(info.timestamp, loggerDateTimeFormat).utc().format(loggerDateTimeFormat)
   const timestamp = moment(info.timestamp, loggerDateTimeFormat).utc().format(loggerDateTimeFormat)
   return `[${timestamp} GMT] ${info.level}: ${info.message}`
 })
@@ -30,6 +29,7 @@ const stream = rfs.createStream(`${moment().format('YYMMDD')}.log`, {
   compress: 'gzip'
 })
 winston.transports.Stream = stream
+
 
 const logger = winston.createLogger({
   level: (process.env.NODE_ENV === 'dev') ? 'debug' : 'info',
@@ -51,25 +51,20 @@ const logger = winston.createLogger({
     new winston.transports.File({
       level: 'error', // this will make to print only error level logs
       filename: `${logFileDir}/${moment().format('YYMMDD')}.log`,
-      // maxsize: 5242880, // 5mb
       format: winston.format.combine(
-        winston.format.uncolorize()
+        winston.format.uncolorize(),
       ),
     }),
-    // new dailyRotateFile({
-    //   auditFile: 'winston-audit-file',
-    //   level: 'error',
-    //   filename: (path.join(__dirname, '../../logs/server-logs/error-logs.log')),
-    //   zippedArchive: true,
-    //   maxSize: '5m',
-    //   maxFiles: '2d',
-    //   format: winston.format.combine(
-    //     winston.format.uncolorize()
-    //   ),
-    // })
   ],
   exitOnError: false
 })
+
+logger.on('data', (info) => {
+  if (!info.level || !info.level.includes('error')) return
+  // send alert to developers & pm.
+  // console.log('inside')
+})
+
 
 
 module.exports = logger
