@@ -3,3 +3,7 @@ node_modules
 
 # loggers
 logs
+
+# db-backups
+dump
+backups

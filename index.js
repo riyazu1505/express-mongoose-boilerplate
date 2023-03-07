@@ -10,6 +10,10 @@ process.env.UV_THREADPOOL_SIZE = (require('os')).cpus().length // By default, th
 global.serverTz = Intl.DateTimeFormat().resolvedOptions().timeZone
 
 
+// cron-jobs
+require('./utils/cron-jobs')
+
+
 // unhandled exceptions handler
 const { unexpectedErrorHandler } = require('./helpers/errorHandlers')
 process.on('uncaughtException', unexpectedErrorHandler)
